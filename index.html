@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamit'i Sev</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 4px;
+            padding: 4px;
+            background-color: #d6d1f1;
+        }
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+        .character {
+            width: 400px;
+            border-radius: 20px;
+        }
+        .kalp {
+            position: absolute;
+            width: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.4s ease-out;
+        }
+
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: mediumpurple;
+            display: none; 
+            font-weight: bold;
+            z-index: 10;
+            text-shadow:
+                    2px 2px 0 white,
+                    -2px -2px 0 white,
+                    2px -2px 0 white,
+                    -2px 2px 0 white;
+        }
+        #counter {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border: 2px solid #ccc;
+            width: 200px;
+            margin: 20px auto; /* margin-top yerine sadece margin kullanıldı */
+        }
+            
+        
+    </style>
+</head>
+<body>
+    <h1>Hamit'i Sev</h1>
+    <p>Hamit'in yüzüne tıklayarak sevebilirsiniz!</p>
+    <div class="container">
+        <img src="IMG_6156.png" alt="Hamit" class="character" id="character">
+        <img src="kalp.png" alt="ZORBA HAMIT" class="kalp" id="kalp">
+        <div class="message" id="message">Zorba Hamit</div>
+    </div>
+    <div id="counter">Sevme Sayısı: 0</div>
+    <script>
+        const character = document.getElementById("character");
+        const kalp = document.getElementById("kalp");
+        const counter = document.getElementById("counter");
+
+        let clickCount = 0;  // Tıklama sayacı
+
+        character.addEventListener("click", function() {
+            // Tıklama sayısını artır
+            clickCount++;
+
+            // Sayacı güncelle
+            counter.innerHTML = "Sevme Sayısı: " + clickCount;
+        });
+
+        character.addEventListener("click", () => {
+            kalp.style.transform = "translate(-50%, -50%) scale(1)";
+            setTimeout(() => {
+                kalp.style.transform = "translate(-50%, -50%) scale(0)";
+            }, 400); 
+        });
+        const message = document.getElementById("message");
+        character.addEventListener("click", function() {
+            message.style.display = "block";  
+            setTimeout(function() {
+                message.style.display = "none";  
+            }, 400);
+        });
+    </script>
+</body>
+</html>
